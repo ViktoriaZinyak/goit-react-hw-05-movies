@@ -1,6 +1,6 @@
 import { useParams, Outlet, NavLink, useLocation } from 'react-router-dom';
 import { getMovieDetails } from 'moviesAPI';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { IMG_ORG, IMG_CONTENT } from 'moviesAPI';
 import { Box } from './MovieDetails.Styled';
 
@@ -63,7 +63,9 @@ const MovieDetails = () => {
             <p>Additional information</p>
             <NavLink to="cast">Cast</NavLink>
             <NavLink to="review">Review</NavLink>
-            <Outlet />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Outlet />
+            </Suspense>
           </div>
         </section>
       )}
