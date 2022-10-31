@@ -1,11 +1,14 @@
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { lazy } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
-import { Home } from 'pages/Home/Home';
-import { Movies } from '../pages/Movies/Movies';
-import { MovieDetails } from 'pages/MovieDetails/MovieDetails';
-import { Cast } from './Cast';
-import { Reviews } from './Reviews';
-import { NotFound } from './NotFound/NotFound';
+// import { Home } from 'pages/Home/Home';
+import Movies from '../pages/Movies/Movies';
+import MovieDetails from 'pages/MovieDetails/MovieDetails';
+import Cast from './Cast';
+import Reviews from './Reviews';
+import NotFound from './NotFound/NotFound';
+
+const Home = lazy(() => import('pages/Home/Home'));
 
 export const App = () => {
   return (

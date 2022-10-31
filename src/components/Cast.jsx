@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { IMG_ORG, IMG_CONTENT } from 'moviesAPI';
 
-export const Cast = () => {
+const Cast = () => {
   const [actorsInfo, setActorInfo] = useState([]);
   const { movieId } = useParams();
 
@@ -50,3 +50,5 @@ export const Cast = () => {
     </>
   );
 };
+
+export default Cast;

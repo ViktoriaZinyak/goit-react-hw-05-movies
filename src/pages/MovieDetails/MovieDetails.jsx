@@ -1,12 +1,13 @@
-import { useParams, Outlet, NavLink } from 'react-router-dom';
+import { useParams, Outlet, NavLink, useLocation } from 'react-router-dom';
 import { getMovieDetails } from 'moviesAPI';
 import { useState, useEffect } from 'react';
 import { IMG_ORG, IMG_CONTENT } from 'moviesAPI';
 import { Box } from './MovieDetails.Styled';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState([]);
   const { movieId } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
     // const controller = new AbortController();
@@ -40,6 +41,7 @@ export const MovieDetails = () => {
     <>
       {movieInfo && (
         <section>
+          <NavLink to={location.state?.from ?? '/movies'}>Go Back</NavLink>
           <Box>
             <img
               src={poster_path ? img : IMG_CONTENT}
@@ -68,3 +70,5 @@ export const MovieDetails = () => {
     </>
   );
 };
+
+export default MovieDetails;

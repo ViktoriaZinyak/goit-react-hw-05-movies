@@ -5,7 +5,7 @@ import { searchMovies } from 'moviesAPI';
 import { List } from 'pages/Home/Home.styled';
 import { MovieItem } from 'components/MovieItem/MovieItem';
 
-export const Movies = () => {
+const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
@@ -53,3 +53,5 @@ export const Movies = () => {
     </section>
   );
 };
+
+export default Movies;

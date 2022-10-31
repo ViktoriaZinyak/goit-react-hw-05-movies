@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { MovieItem } from 'components/MovieItem/MovieItem';
 import { Section, List } from './Home.styled';
 
-export const Home = () => {
+const Home = () => {
   const [moviesList, setMoviesList] = useState([]);
   useEffect(() => {
     async function getMoviesList() {
@@ -32,3 +32,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;
