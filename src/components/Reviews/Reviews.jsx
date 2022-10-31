@@ -7,7 +7,6 @@ const Reviews = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
-    // const controller = new AbortController();
     async function getMovieInfo() {
       try {
         const movieReview = await getMovieReviews(movieId);
@@ -17,9 +16,6 @@ const Reviews = () => {
       }
     }
     getMovieInfo();
-    // return () => {
-    //   controller.abort();
-    // };
   }, [movieId]);
   console.log(movieReviews);
   return (

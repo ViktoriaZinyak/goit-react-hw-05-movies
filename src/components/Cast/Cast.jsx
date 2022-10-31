@@ -38,7 +38,7 @@ const Cast = () => {
           })}
         </List>
       ) : (
-        <p>We dont`t have any information about actors</p>
+        <p>We don`t have any information about actors</p>
       )}
     </>
   );
