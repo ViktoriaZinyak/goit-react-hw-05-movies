@@ -1,8 +1,15 @@
-import { useParams, Outlet, NavLink, useLocation } from 'react-router-dom';
-import { getMovieDetails } from 'moviesAPI';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
-import { IMG_ORG, IMG_CONTENT } from 'moviesAPI';
-import { Box } from './MovieDetails.Styled';
+import { BsArrowLeft } from 'react-icons/bs';
+import { IMG_ORG, IMG_CONTENT, getMovieDetails } from 'moviesAPI';
+import {
+  Box,
+  Link,
+  Section,
+  AddInfo,
+  LinkWrap,
+  AddLink,
+} from './MovieDetails.Styled';
 
 const MovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState([]);
@@ -10,20 +17,15 @@ const MovieDetails = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // const controller = new AbortController();
     async function getMovieInfo() {
       try {
         const movieInfo = await getMovieDetails(movieId);
         setMovieInfo(movieInfo);
-        console.log(movieInfo);
       } catch (error) {
         console.log(error);
       }
     }
     getMovieInfo();
-    // return () => {
-    //   controller.abort();
-    // };
   }, [movieId]);
 
   const {
@@ -40,8 +42,11 @@ const MovieDetails = () => {
   return (
     <>
       {movieInfo && (
-        <section>
-          <NavLink to={location.state?.from ?? '/movies'}>Go Back</NavLink>
+        <Section>
+          <Link to={location.state?.from ?? '/movies'}>
+            <BsArrowLeft />
+            Go Back
+          </Link>
           <Box>
             <img
               src={poster_path ? img : IMG_CONTENT}
@@ -60,14 +65,16 @@ const MovieDetails = () => {
             </div>
           </Box>
           <div>
-            <p>Additional information</p>
-            <NavLink to="cast">Cast</NavLink>
-            <NavLink to="review">Review</NavLink>
+            <AddInfo>Additional information</AddInfo>
+            <LinkWrap>
+              <AddLink to="cast">Cast</AddLink>
+              <AddLink to="review">Review</AddLink>
+            </LinkWrap>
             <Suspense fallback={<div>Loading...</div>}>
               <Outlet />
             </Suspense>
           </div>
-        </section>
+        </Section>
       )}
     </>
   );
