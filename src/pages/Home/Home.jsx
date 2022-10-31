@@ -1,6 +1,7 @@
 import { getPopMovies } from 'moviesAPI';
 import { useEffect, useState } from 'react';
-import { MovieItem } from 'components/MovieItem';
+import { MovieItem } from 'components/MovieItem/MovieItem';
+import { Section, List } from './Home.styled';
 
 export const Home = () => {
   const [moviesList, setMoviesList] = useState([]);
@@ -19,17 +20,14 @@ export const Home = () => {
   return (
     <>
       {moviesList.length > 0 && (
-        <section>
+        <Section>
           <h1>Trending today</h1>
-          <ul>
+          <List>
             {moviesList.map(movieItem => {
-              return (
-                // <MovieItem key={movieItem.id}>{movieItem.title}</MovieItem>
-                <MovieItem key={movieItem.id} movieItem={movieItem} />
-              );
+              return <MovieItem key={movieItem.id} movieItem={movieItem} />;
             })}
-          </ul>
-        </section>
+          </List>
+        </Section>
       )}
     </>
   );
