@@ -15,8 +15,10 @@ const MovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState([]);
   const { movieId } = useParams();
   const location = useLocation();
+  const [goBackLink, setGoBackLink] = useState('');
 
   useEffect(() => {
+    setGoBackLink(location.state?.from ?? '/movies');
     async function getMovieInfo() {
       try {
         const movieInfo = await getMovieDetails(movieId);
@@ -26,6 +28,7 @@ const MovieDetails = () => {
       }
     }
     getMovieInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [movieId]);
 
   const {
@@ -43,7 +46,7 @@ const MovieDetails = () => {
     <>
       {movieInfo && (
         <Section>
-          <Link to={location.state?.from ?? '/movies'}>
+          <Link to={goBackLink}>
             <BsArrowLeft />
             Go Back
           </Link>
