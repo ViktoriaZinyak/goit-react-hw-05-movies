@@ -1,25 +1,27 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
 export const SearchBar = ({ onSubmit, value }) => {
-  const [request, setRequest] = useState('');
+  // const [request, setRequest] = useState('');
 
-  const handleInputChange = e => {
-    setRequest(e.target.value.trim());
-    console.log(e);
-  };
+  // const handleInputChange = e => {
+  //   setRequest(e.target.value.trim());
+  //   console.log(e);
+  // };
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (request.trim() === '') {
+    const form = e.target;
+    const searchValue = form.elements.searchValue.value;
+    if (searchValue.trim() === '') {
       return;
     }
-    onSubmit(request);
-    setRequest('');
+    onSubmit(searchValue);
+    form.reset();
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" value={value} onChange={handleInputChange} />
+      <input type="text" name="searchValue" />
       <button type="submit">Search</button>
     </form>
   );
