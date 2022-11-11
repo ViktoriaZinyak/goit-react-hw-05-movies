@@ -32,7 +32,7 @@ const Movies = () => {
 
   return (
     <Section>
-      <SearchBar onSubmit={onChangeFilter} />
+      <SearchBar value={query} onSubmit={onChangeFilter} />
       {movies.length > 0 && (
         <List>
           {movies.map(movieItem => {

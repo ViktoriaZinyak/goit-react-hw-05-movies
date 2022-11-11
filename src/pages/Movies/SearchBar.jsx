@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-export const SearchBar = ({ onSubmit }) => {
+export const SearchBar = ({ onSubmit, value }) => {
   const [request, setRequest] = useState('');
 
   const handleInputChange = e => {
     setRequest(e.target.value.trim());
+    console.log(e);
   };
 
   const handleSubmit = e => {
@@ -18,7 +19,7 @@ export const SearchBar = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" value={request} onChange={handleInputChange} />
+      <input type="text" value={value} onChange={handleInputChange} />
       <button type="submit">Search</button>
     </form>
   );

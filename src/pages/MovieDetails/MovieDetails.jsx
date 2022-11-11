@@ -19,6 +19,7 @@ const MovieDetails = () => {
 
   useEffect(() => {
     setGoBackLink(location.state?.from ?? '/movies');
+    console.log(location.state.from);
     async function getMovieInfo() {
       try {
         const movieInfo = await getMovieDetails(movieId);
